@@ -1,3 +1,5 @@
+![Computer Code](express.webp)
+
 # Express Server Application
 
 ## Table of Contents
