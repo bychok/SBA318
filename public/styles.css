@@ -1,3 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #333;
+    color: #ccc; /* Light grey text for readability */
+    line-height: 1.5;
+    font-size: 16px;
+    padding: 20px;
+}
+
+/* Main Heading Style */
+h1, h2 {
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+/* Form Styling */
+form {
+    background-color: #424242;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Input and Textarea Styles */
+input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 2px solid #555;
+    background-color: #222;
+    color: #ddd;
+    border-radius: 4px;
+}
+
+/* Button Styling */
+button {
+    background-color: #06D6A0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+button:hover, button:focus {
+    opacity: 0.8;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
 }
