@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const apiRoutes = require("./routes/api");
 const customMiddleware = require("./middlewares/customMiddleware");
+const errorMiddleware = require("./middlewares/errorMiddleware");
 
 const app = express();
 
@@ -18,14 +19,16 @@ app.use(express.static("public"));
 // Custom Middleware
 app.use(customMiddleware);
 
+// Root Route
+app.get("/", (req, res) => {
+  res.render("index", { title: "Home" }); // Make sure you have an index.ejs file in your views directory
+});
+
 // API Routes
 app.use("/api", apiRoutes);
 
 // Error Handling Middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>

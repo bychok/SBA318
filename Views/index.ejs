@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Express App</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <h1>Welcome to the Express App</h1>
+    <h2>Add a User</h2>
+    <form action="/api/users" method="post">
+      <input type="text" name="name" placeholder="Name" required />
+      <button type="submit">Add User</button>
+    </form>
+    <h2>Add a Post</h2>
+    <form action="/api/posts" method="post">
+      <input type="text" name="title" placeholder="Post Title" required />
+      <input type="number" name="userId" placeholder="User ID" required />
+      <button type="submit">Add Post</button>
+    </form>
+    <h2>Add a Comment</h2>
+    <form action="/api/comments" method="post">
+      <input type="text" name="content" placeholder="Comment" required />
+      <input type="number" name="postId" placeholder="Post ID" required />
+      <button type="submit">Add Comment</button>
+    </form>
+  </body>
+</html>

@@ -1,33 +1,42 @@
 const express = require("express");
 const router = express.Router();
 
-// Sample Data
-let data = [{ id: 1, content: "First item" }];
+// Sample Data Categories: Users, Posts, Comments
+let users = [{ id: 1, name: "Alice" }];
+let posts = [{ id: 1, title: "Hello World", userId: 1 }];
+let comments = [{ id: 1, postId: 1, content: "Great post!" }];
 
-// Routes
-router.get("/items", (req, res) => {
-  res.status(200).send(data);
+// Users Routes
+router.get("/users", (req, res) => res.json(users));
+router.post("/users", (req, res) => {
+  const { name } = req.body;
+  const newUser = { id: users.length + 1, name };
+  users.push(newUser);
+  res.status(201).json(newUser);
 });
 
-router.post("/items", (req, res) => {
-  const { content } = req.body;
-  const newItem = { id: data.length + 1, content };
-  data.push(newItem);
-  res.status(201).send(newItem);
+// Posts Routes
+router.get("/posts", (req, res) => {
+  const { userId } = req.query;
+  const filteredPosts = userId
+    ? posts.filter((p) => p.userId === parseInt(userId))
+    : posts;
+  res.json(filteredPosts);
+});
+router.post("/posts", (req, res) => {
+  const { title, userId } = req.body;
+  const newPost = { id: posts.length + 1, title, userId };
+  posts.push(newPost);
+  res.status(201).json(newPost);
 });
 
-router.patch("/items/:id", (req, res) => {
-  const { id } = req.params;
-  const { content } = req.body;
-  const item = data.find((item) => item.id === parseInt(id));
-  item.content = content;
-  res.status(200).send(item);
-});
-
-router.delete("/items/:id", (req, res) => {
-  const { id } = req.params;
-  data = data.filter((item) => item.id !== parseInt(id));
-  res.status(204).send();
+// Comments Routes
+router.get("/comments", (req, res) => res.json(comments));
+router.post("/comments", (req, res) => {
+  const { content, postId } = req.body;
+  const newComment = { id: comments.length + 1, postId, content };
+  comments.push(newComment);
+  res.status(201).json(newComment);
 });
 
 module.exports = router;
